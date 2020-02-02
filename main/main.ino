@@ -11,6 +11,12 @@ unsigned long debounce_time = 500;
 int interval = 0;
 int lastOne = -1; // 0 = right, 1 = left
 int lastTwo = -2; // 0 = right, 1 = left
+int r = 3;
+int g = 5;
+int b = 6;
+int rVal = 255;
+int gVal = 0;
+int bVal = 0;
 
 
 void leftBuzz() {
@@ -34,7 +40,7 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(13, OUTPUT);
   pinMode(8, INPUT);
-  randomSeed(analogRead(2));
+  randomSeed(analogRead(11));
   buzz_start = millis();
   interval = random(5, 10) * 1000;
 }
@@ -53,7 +59,9 @@ void loop() {
 //  }
   // end of button nonsense
 
-  
+  analogWrite(r, rVal);
+  analogWrite(g, gVal);
+  analogWrite(b, bVal);
   if (millis() > buzz_start + interval) {
     buzz_start = millis();
     int left = random(0, 2); // 0 = go right, 1 = go left
